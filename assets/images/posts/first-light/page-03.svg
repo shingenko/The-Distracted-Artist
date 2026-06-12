@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1067" viewBox="0 0 800 1067">
+  <rect width="800" height="1067" fill="#f5f5f5"/>
+  <rect x="60" y="60" width="680" height="947" fill="#ffffff" stroke="#e5e5e5" stroke-width="2"/>
+  <text x="400" y="500" font-family="Georgia, serif" font-size="36" fill="#cccccc" text-anchor="middle">Page 3</text>
+  <text x="400" y="550" font-family="Georgia, serif" font-size="20" fill="#dddddd" text-anchor="middle">Your comic art here</text>
+</svg>

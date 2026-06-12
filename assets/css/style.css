@@ -1,0 +1,448 @@
+/* ============================================================
+   ComicPages — Minimal comic-story blog
+   Palette: soft grays + white + whisper of blue (#7ea5ca)
+   ============================================================ */
+
+/* --- Reset & Base ----------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #fafafa;
+  --bg-card:      #ffffff;
+  --text:         #333333;
+  --text-muted:   #777777;
+  --text-light:   #999999;
+  --border:       #e5e5e5;
+  --border-light: #f0f0f0;
+  --accent:       #7ea5ca;
+  --accent-soft:  #e8f0f7;
+  --shadow:       0 1px 3px rgba(0,0,0,0.06);
+  --shadow-hover: 0 4px 16px rgba(0,0,0,0.08);
+  --radius:       8px;
+  --font:         -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:    "SF Mono", "Fira Code", "Fira Mono", Menlo, monospace;
+  --max-width:    1100px;
+}
+
+html {
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+a:hover { color: #5a8ab5; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* --- Header ------------------------------------------------ */
+.site-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-logo {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.site-logo:hover { color: var(--accent); }
+.site-nav { display: flex; gap: 0.3rem; }
+.site-nav a {
+  color: var(--text-muted);
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  transition: background 0.15s, color 0.15s;
+}
+.site-nav a:hover,
+.site-nav a.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* --- Main -------------------------------------------------- */
+.main-content {
+  flex: 1;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* --- Comic Grid (Home) ------------------------------------ */
+.home-header {
+  margin-bottom: 2rem;
+}
+.home-header h1 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Tag bar */
+.tag-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.tag-bar .tag {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.tag-bar .tag:hover,
+.tag-bar .tag.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.tag-bar .tag .count {
+  color: var(--text-light);
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+}
+
+/* Grid */
+.comic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.comic-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.comic-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+.comic-card-link {
+  color: inherit;
+  display: block;
+}
+.comic-card-image {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+.comic-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s;
+}
+.comic-card:hover .comic-card-image img { transform: scale(1.03); }
+.comic-card-body {
+  padding: 1rem 1.1rem 1.2rem;
+}
+.comic-card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 0.35rem;
+  color: var(--text);
+}
+.comic-card-date {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+.comic-card-excerpt {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  line-height: 1.45;
+}
+.comic-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+}
+.comic-card-tags .tag {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+  transition: all 0.15s;
+}
+.comic-card-tags .tag:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* --- Post Full --------------------------------------------- */
+.post-full { max-width: 780px; margin: 0 auto; }
+.post-header { margin-bottom: 2rem; }
+.post-title {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+.post-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+.tag:hover { border-color: var(--accent); }
+.tag-sm { font-size: 0.7rem; padding: 0.1rem 0.45rem; }
+
+/* Comic viewer */
+.comic-viewer {
+  margin: 2rem 0;
+}
+.comic-page {
+  margin-bottom: 0;
+  line-height: 0;
+}
+.comic-page img {
+  width: 100%;
+  border-radius: 2px;
+}
+
+/* Post content */
+.post-content {
+  margin-top: 2rem;
+  font-size: 1.05rem;
+}
+.post-content p { margin-bottom: 1.2rem; }
+.post-content h2, .post-content h3 {
+  font-weight: 500;
+  margin: 2rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+/* Post nav */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.92rem;
+}
+
+/* --- Archive ----------------------------------------------- */
+.archive-page { max-width: 700px; margin: 0 auto; }
+.archive-page h1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+.archive-subtitle {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+.archive-year { margin-bottom: 2rem; }
+.archive-year h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.archive-month { margin-bottom: 1.25rem; }
+.archive-month h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+.archive-post-list { list-style: none; }
+.archive-post-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+}
+.archive-day {
+  color: var(--text-light);
+  font-size: 0.82rem;
+  min-width: 1.6rem;
+  font-variant-numeric: tabular-nums;
+}
+.archive-tags { margin-left: auto; display: flex; gap: 0.25rem; }
+
+/* --- Tags Index -------------------------------------------- */
+.tags-index { max-width: 700px; margin: 0 auto; }
+.tags-index h1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+.tags-subtitle {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.tag-cloud-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  transition: all 0.15s;
+}
+.tag-cloud-item:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.tag-cloud-count {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+/* --- Tag Page (individual) --------------------------------- */
+.tag-page { max-width: 700px; margin: 0 auto; }
+.tag-page h1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.tag-count { color: var(--text-light); margin-bottom: 1.5rem; }
+.back-link { margin-top: 2rem; font-size: 0.9rem; }
+
+/* --- Pagination -------------------------------------------- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+}
+.pagination a, .pagination span {
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+.pagination a:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.pagination .current {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* --- Footer ------------------------------------------------ */
+.site-footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-light);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.82rem;
+}
+.footer-subtle { margin-top: 0.3rem; color: var(--text-light); }
+.footer-subtle a { color: var(--text-muted); }
+
+/* --- Empty States ------------------------------------------ */
+.empty-state {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* --- Hidden (for JS filtering) ----------------------------- */
+.comic-card.hidden { display: none; }
+
+/* --- Responsive -------------------------------------------- */
+@media (max-width: 640px) {
+  .header-inner { padding: 0.75rem 1rem; }
+  .site-nav { gap: 0; }
+  .site-nav a { padding: 0.3rem 0.55rem; font-size: 0.85rem; }
+  .main-content { padding: 1.5rem 1rem 3rem; }
+  .comic-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+  .post-title { font-size: 1.5rem; }
+  .tag-bar { gap: 0.3rem; }
+  .tag-bar .tag { font-size: 0.75rem; padding: 0.25rem 0.6rem; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #1a1a1a;
+    --bg-card:   #242424;
+    --text:      #d4d4d4;
+    --text-muted:#999999;
+    --text-light:#777777;
+    --border:    #333333;
+    --border-light: #2a2a2a;
+    --accent-soft: rgba(126,165,202,0.12);
+    --shadow:       0 1px 3px rgba(0,0,0,0.2);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .comic-card-image { background: #1e1e1e; }
+}

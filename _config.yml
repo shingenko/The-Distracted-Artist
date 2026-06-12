@@ -1,0 +1,44 @@
+# ComicPages — A minimal comic-story blog
+title: Comic Pages
+email: ""
+description: >-
+  Short comic stories, 3–6 pages each. Read, browse by tag,
+  or wander through the archives.
+baseurl: "/ComicPages"
+url: ""
+github_username: ""
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+# Collections — tag pages generated from data
+collections:
+  tags_pages:
+    output: true
+    permalink: /tags/:name/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: "tags_pages"
+    values:
+      layout: tag
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - new-post.sh
+  - README.md
+  - vendor/

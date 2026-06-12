@@ -1,0 +1,10 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a href="{{ site.baseurl }}/" class="site-logo">{{ site.title }}</a>
+    <nav class="site-nav">
+      <a href="{{ site.baseurl }}/" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
+      <a href="{{ site.baseurl }}/archive/" {% if page.url contains "/archive/" %}class="active"{% endif %}>Archive</a>
+      <a href="{{ site.baseurl }}/tags/" {% if page.url contains "/tags/" %}class="active"{% endif %}>Tags</a>
+    </nav>
+  </div>
+</header>

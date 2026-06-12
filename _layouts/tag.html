@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<div class="tag-page">
+  <h1>{{ page.tag_name }}</h1>
+  <p class="tag-count">{{ page.posts.size }} comic{% if page.posts.size != 1 %}s{% endif %}</p>
+
+  <div class="comic-grid">
+    {% for post in page.posts %}
+    <article class="comic-card">
+      <a href="{{ post.url | relative_url }}" class="comic-card-link">
+        {% if post.cover_image %}
+        <div class="comic-card-image">
+          <img src="{{ post.cover_image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+        </div>
+        {% endif %}
+        <div class="comic-card-body">
+          <h2 class="comic-card-title">{{ post.title }}</h2>
+          <time class="comic-card-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+          {% if post.excerpt %}
+          <p class="comic-card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          {% endif %}
+        </div>
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+
+  <p class="back-link"><a href="{{ site.baseurl }}/tags/">&larr; All tags</a></p>
+</div>
