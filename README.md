@@ -29,6 +29,28 @@ You'll be prompted for:
 The script copies your images into `assets/images/posts/<slug>/`, generates
 the post file with proper frontmatter, and you're done.
 
+## Editing a Post
+
+```bash
+./edit-post.sh
+```
+
+Pick a post from the list, then choose what to update:
+
+1. **Replace images** — point to a folder with new comic pages
+2. **Update text** — paste new commentary
+3. **Update tags** — change the tag list
+4. **Update title**
+5. **Update description**
+
+## Deleting a Post
+
+```bash
+./delete-post.sh
+```
+
+Pick a post, type `DELETE` to confirm. Removes the post file and its images.
+
 ## File Structure
 
 ```

@@ -41,5 +41,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - new-post.sh
+  - edit-post.sh
+  - delete-post.sh
   - README.md
   - vendor/
