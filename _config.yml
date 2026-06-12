@@ -1,11 +1,11 @@
-# ComicPages — A minimal comic-story blog
-title: Comic Pages
+# The Distracted Artist — A minimal comic-story blog
+title: The Distracted Artist
 email: ""
 copyright: "Samuel Reyes"
 description: >-
   Short comic stories, 3–6 pages each. Read, browse by tag,
   or wander through the archives.
-baseurl: "/ComicPages"
+baseurl: "/The-Distracted-Artist"
 url: ""
 github_username: ""
 
