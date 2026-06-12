@@ -13,12 +13,6 @@ github_username: ""
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
 
-# Collections — tag pages generated from data
-collections:
-  tags_pages:
-    output: true
-    permalink: /tags/:name/
-
 # Default front matter
 defaults:
   - scope:
@@ -26,11 +20,6 @@ defaults:
       type: "posts"
     values:
       layout: post
-  - scope:
-      path: ""
-      type: "tags_pages"
-    values:
-      layout: tag
   - scope:
       path: ""
     values:
