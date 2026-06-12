@@ -44,4 +44,5 @@ exclude:
   - edit-post.sh
   - delete-post.sh
   - README.md
+  - blog_management.md
   - vendor/
