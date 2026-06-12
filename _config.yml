@@ -5,8 +5,8 @@ copyright: "Samuel Reyes"
 description: >-
   Short comic stories, 3–6 pages each. Read, browse by tag,
   or wander through the archives.
-baseurl: "/The-Distracted-Artist"
-url: ""
+baseurl: ""
+url: "https://samueldraws.com"
 github_username: ""
 
 # Build settings
